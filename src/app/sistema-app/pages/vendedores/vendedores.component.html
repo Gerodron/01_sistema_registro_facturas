@@ -1,0 +1,29 @@
+<div class="container">
+    <form class="form" (ngSubmit)="sistemaVendedores()" [formGroup]="newVendedor">
+      <h2 *ngIf="!newVendedor.value.id; else editarVendedor" >Integración de Vendedor</h2>
+      <ng-template #editarVendedor >
+        <h2 >Edicion del Vendedor</h2>
+      </ng-template>
+
+      <mat-form-field class="form-field">
+        <mat-label>Nombre del vendedor:</mat-label>
+        <input matInput name="nombreVendedor" required formControlName="nombre" autocomplete="off">
+      </mat-form-field>
+  
+      <mat-form-field class="form-field">
+        <mat-label>Email:</mat-label>
+        <input matInput name="emailVendedor" required formControlName="email" autocomplete="off">
+      </mat-form-field>
+  
+      <mat-form-field class="form-field">
+        <mat-label>Telefono:</mat-label>
+        <input matInput name="telefonoVendedor" required formControlName="telefono" autocomplete="off">
+      </mat-form-field>
+      
+      <button *ngIf="!newVendedor.value.id; else botonEditar" type="submit" mat-raised-button [disabled]="newVendedor.invalid" >Guardar</button>
+      <ng-template #botonEditar >
+        <button type="submit" [disabled]="!newVendedor.touched" mat-raised-button>Guardar cambios</button>
+      </ng-template>
+    </form>
+  </div>
+  

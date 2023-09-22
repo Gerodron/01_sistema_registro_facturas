@@ -1,0 +1,111 @@
+<div class="container">
+    <div class="form" >
+      <h2>Generar Factura</h2>
+  
+      <!-- Sección: Detalles del Cliente -->
+      <form class="section" [formGroup]="newFactura" (ngSubmit)="guardarFactura()" >
+
+        <mat-form-field class="form-field">
+          <mat-label>Fecha</mat-label>
+          <input matInput name="fecha" required autocomplete="off" formControlName="fecha" [matDatepicker]="datepicker">
+          <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+        </mat-form-field>
+
+        
+
+        <h3>Detalles del Cliente</h3>
+        <mat-form-field class="form-field">
+          <mat-label>Nombre del cliente:</mat-label>
+          <input matInput name="nombreCliente" required autocomplete="off" formControlName="nombreCliente">
+        </mat-form-field>
+  
+        <mat-form-field class="form-field">
+          <mat-label>Dirección:</mat-label>
+          <input matInput name="direccionCliente" required autocomplete="off" formControlName="direccionCliente">
+        </mat-form-field>
+  
+        <mat-form-field class="form-field">
+          <mat-label>Teléfono:</mat-label>
+          <input matInput name="telefonoCliente" required autocomplete="off" formControlName="telefonoCliente">
+        </mat-form-field>
+  
+        <!-- Sección: Detalles del Vendedor -->
+        <div class="section">
+          <h3>Detalles del Vendedor</h3>
+          <mat-form-field class="form-field">
+            <mat-label>Nombre Vendedor:</mat-label>
+            <input matInput name="nombreVendedor" required autocomplete="off" formControlName="nombreVendedor">
+          </mat-form-field>
+  
+          <mat-form-field class="form-field">
+            <mat-label>Email:</mat-label>
+            <input matInput name="emailVendedor" required autocomplete="off" formControlName="emailVendedor">
+          </mat-form-field>
+  
+          <mat-form-field class="form-field">
+            <mat-label>Teléfono:</mat-label>
+            <input matInput name="telefonoVendedor" required autocomplete="off" formControlName="telefonoVendedor">
+          </mat-form-field>
+        </div>
+  
+        <!-- Sección: Lista de Productos -->
+        <div class="section">
+          <h3>Lista de Productos</h3>
+          <div class="container">
+            <mat-form-field >
+              <mat-label>Buscador</mat-label>
+              <input autocomplete="off" matInput (keyup)="applyFilter($event)" placeholder="Ex. Juan" #input>
+             </mat-form-field>
+            <div class="mat-elevation-z2">
+                <table mat-table [dataSource]="dataSource" >
+        
+                    <!-- Nombre Column -->
+                    <ng-container matColumnDef="nombre">
+                      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                      <td mat-cell *matCellDef="let producto"> {{producto.nombre}} </td>
+                    </ng-container>
+                  
+                    <!-- Código Column -->
+                    <ng-container matColumnDef="codigo">
+                      <th mat-header-cell *matHeaderCellDef> Código </th>
+                      <td mat-cell *matCellDef="let producto"> {{producto.codigo}} </td>
+                    </ng-container>
+                  
+                    <!-- Precio Column -->
+                    <ng-container matColumnDef="precio">
+                      <th mat-header-cell *matHeaderCellDef> Precio </th>
+                      <td mat-cell *matCellDef="let producto"> {{producto.precio | currency: 'USD' | lowercase }} </td>
+                    </ng-container>
+                  
+                    <!-- Cantidad Column -->
+                    <ng-container matColumnDef="cantidad">
+                      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                      <td mat-cell *matCellDef="let producto"> {{producto.cantidad}} </td>
+                    </ng-container>
+                  
+                    <!-- Acciones Column -->
+                    <ng-container matColumnDef="acciones">
+                      <th mat-header-cell *matHeaderCellDef>  </th>
+                      <td mat-cell *matCellDef="let producto">
+                        <button type="button" (click)="agregarListado(producto.id)" mat-stroked-button color="primary">Agregar</button>
+                      </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+        </div>
+        </div>
+        <button type="submit" mat-raised-button class="button" [disabled]="newFactura.invalid" >Guardar</button>
+      </form>
+    </div>
+  </div>
+  

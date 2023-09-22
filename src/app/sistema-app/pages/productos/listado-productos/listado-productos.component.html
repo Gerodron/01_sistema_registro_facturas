@@ -1,0 +1,60 @@
+<div style="margin: 10px 0 0 0;">
+  <h2 style="text-align: center;">LISTADO DE PRODUCTOS
+    <button routerLink="/home/productos" id="boton-nuevo-cliente"  mat-flat-button>Generar</button>
+  </h2>
+</div>
+
+<div class="container">
+  <mat-form-field >
+    <mat-label>Buscador</mat-label>
+    <input autocomplete="off" matInput (keyup)="applyFilter($event)" placeholder="Ex. laptop" #input>
+   </mat-form-field>
+    <div class="mat-elevation-z2">
+
+        <table mat-table [dataSource]="dataSource" >
+
+            <!-- Nombre Column -->
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let producto"> {{producto.nombre}} </td>
+            </ng-container>
+          
+            <!-- Código Column -->
+            <ng-container matColumnDef="codigo">
+              <th mat-header-cell *matHeaderCellDef> Código </th>
+              <td mat-cell *matCellDef="let producto"> {{producto.codigo}} </td>
+            </ng-container>
+          
+            <!-- Precio Column -->
+            <ng-container matColumnDef="precio">
+              <th mat-header-cell *matHeaderCellDef> Precio </th>
+              <td mat-cell *matCellDef="let producto"> {{producto.precio | currency: 'USD' | lowercase }} </td>
+            </ng-container>
+          
+            <!-- Cantidad Column -->
+            <ng-container matColumnDef="cantidad">
+              <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+              <td mat-cell *matCellDef="let producto"> {{producto.cantidad}} </td>
+            </ng-container>
+          
+            <!-- Acciones Column -->
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef>  </th>
+              <td mat-cell *matCellDef="let producto">
+                <button [routerLink]="['/home/productos/editar', producto.id]" mat-button color="primary">Editar</button>
+                <button (click)="deleteProducto(producto.id)" mat-button color="warn">Eliminar</button>
+              </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator
+          [pageSize]="10"   
+          [pageSizeOptions]="[5, 10, 25, 100]"  
+        ></mat-paginator>
+    </div>
+</div>
+
+
+  

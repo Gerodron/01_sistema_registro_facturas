@@ -1,0 +1,70 @@
+.container {
+    margin:20px 100px
+   }
+ 
+   .mat-elevation-z5 {
+     box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 
+                 0px 4px 5px 0px rgba(0,0,0,0.14), 
+                 0px 1px 10px 0px rgba(0,0,0,0.12);
+   }
+   
+   #titulo-clientes {
+     margin-top: 10px; 
+     margin-left: 50px;
+   }
+   
+   #boton-nuevo-cliente {
+     margin-left: 70%; 
+     background-color: #0b0a13; 
+     color: white;
+   
+   }
+   
+   table {
+     width: 100%;
+     border-collapse: collapse;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+     background-color: white;
+   }
+   
+   th, td {
+     padding: 12px 15px;
+     text-align: left;
+   }
+   
+   th {
+     background-color: #f5f5f5;
+     font-weight: bold;
+   }
+   
+   tr:nth-child(even) {
+     background-color: #f2f2f2;
+   }
+   
+   .mat-cell {
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+   }
+   
+   .mat-cell:last-child {
+     text-align: center;
+   }
+   
+   button.mat-button {
+     margin-right: 8px;
+   }
+   
+     /* CSS PARA FILTRO */
+
+  ::ng-deep input.mat-input-element {
+    color: #484a4c;
+  }
+  
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: #0b0a13 !important;
+  }
+  
+  ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+    background-color: #0b0a13 !important;
+  }

@@ -1,0 +1,58 @@
+<mat-sidenav-container fullscreen>
+    <!-- Barra de navegación lateral (sidenav) -->
+    <mat-sidenav #sidenav>
+      <mat-toolbar style="background-color: #0b0a13;">
+        <span class="example-spacer"></span>
+        <span style="color: aliceblue;">Navigation</span>
+        <span class="example-spacer"></span>
+      </mat-toolbar>
+  
+      <!-- Lista de elementos de navegación -->
+      <mat-nav-list>
+        <!-- Menú desplegable "Factura" -->
+        <div mat-menu-item [matMenuTriggerFor]="facturas">
+          <mat-icon>description</mat-icon>
+          <span>Factura</span>
+          <mat-menu #facturas="matMenu">
+            <a routerLink="./factura" mat-menu-item style="text-align: center;">Sistema</a>
+            <a routerLink="./factura/listado-facturas" mat-menu-item style="text-align: center;">Listado</a>
+          </mat-menu>
+        </div>
+  
+        <!-- Menú desplegable "Asegurados" -->
+        <div mat-menu-item [matMenuTriggerFor]="asegurados">
+          <mat-icon>supervisor_account</mat-icon>
+          <span>Vendedores</span>
+          <mat-menu #asegurados="matMenu">
+            <a routerLink="./vendedores" mat-menu-item style="text-align: center;">Sistema</a>
+            <a routerLink="./vendedores/list-vendedores" mat-menu-item style="text-align: center;">Listado</a>
+          </mat-menu>
+        </div>
+  
+        <!-- Menú desplegable "Seguros" -->
+        <div mat-menu-item [matMenuTriggerFor]="seguros">
+          <mat-icon>shopping_basket</mat-icon>
+          <span>Productos</span>
+          <mat-menu #seguros="matMenu">
+            <a routerLink="./productos" mat-menu-item style="text-align: center;">Sistema</a>
+            <a routerLink="./productos/list-productos" mat-menu-item style="text-align: center;">Listado</a>
+          </mat-menu>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <!-- Barra superior de herramientas (toolbar) -->
+    <mat-toolbar color="black">
+      <button (click)="sidenav.open()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>InsureHub</span>
+    </mat-toolbar>
+  
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-container>
+  
+
+  
